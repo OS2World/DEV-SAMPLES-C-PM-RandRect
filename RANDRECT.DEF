@@ -1,0 +1,11 @@
+;-------------------------------------
+; RANDRECT.DEF module definition file
+;-------------------------------------
+
+NAME           RANDRECT  WINDOWAPI
+
+DESCRIPTION    'Random Rectangle (c) 1988, Ziff Communications Co.'
+PROTMODE
+HEAPSIZE       1024
+STACKSIZE      8192
+EXPORTS        ClientWndProc

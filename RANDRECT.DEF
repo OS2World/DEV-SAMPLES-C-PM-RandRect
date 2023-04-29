@@ -4,8 +4,7 @@
 
 NAME           RANDRECT  WINDOWAPI
 
-DESCRIPTION    'Random Rectangle (c) 1988, Ziff Communications Co.'
-PROTMODE
+DESCRIPTION    '@#OS2World:1.01#@##1## 28 Apr 2023 21:00:00     ARCAOS-507::::::v1.01@@Random rectangles in PM.'
 HEAPSIZE       1024
 STACKSIZE      8192
 EXPORTS        ClientWndProc

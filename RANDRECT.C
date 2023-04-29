@@ -18,14 +18,14 @@ CHAR	szClassName[] = "RandRect";
 
 int main (void)
      {
-     static CHAR szClientClass[] = "RandRect" ;
+     // unsigned char szClientClass[] = "RandRect" ;
      HMQ         hmq ;
-     HWND        hwndClient, hwndFrame ;
-     QMSG        qmsg ;
-     ULONG ctldata;
+     HWND       hwndClient, hwndFrame ;
+     QMSG       qmsg ;
+     ULONG 		ctldata;
 
 
-     hab = WinInitialize (NULL) ;
+     hab = WinInitialize (0) ;
      hmq = WinCreateMsgQueue (hab, 0) ;
      WinRegisterClass( hab,
                            (PCH)szClassName,
@@ -44,9 +44,9 @@ int main (void)
 					 0,
 					 (HWND FAR *)&hwndClient );
 
-     if (hwndFrame != NULL)
+     if (hwndFrame != '\0')
           {
-          while (WinGetMsg (hab, &qmsg, NULL, 0, 0))
+          while (WinGetMsg (hab, &qmsg, 0, 0, 0))
                WinDispatchMsg (hab, &qmsg) ;
 
           WinDestroyWindow (hwndFrame) ;
@@ -85,9 +85,9 @@ MRESULT EXPENTRY ClientWndProc (HWND hwnd, USHORT msg, MPARAM mp1, MPARAM mp2)
                if (!WinStartTimer (hab, hwnd, ID_TIMER, 0))
                     {
                     WinMessageBox (HWND_DESKTOP, hwnd,
-                         "Cannot run program - Too many clocks or timers",
-                         "RANDRECT", 0, MB_OK | MB_ICONEXCLAMATION) ;
-                    return 1 ;
+                         (PCSZ) "Cannot run program - Too many clocks or timers",
+                         (PCSZ)"RANDRECT", 0, MB_OK | MB_ICONEXCLAMATION) ;
+                    return (MRESULT) TRUE;
                     }
                return 0 ;
 
@@ -105,12 +105,12 @@ MRESULT EXPENTRY ClientWndProc (HWND hwnd, USHORT msg, MPARAM mp1, MPARAM mp2)
                return 0 ;
 
           case WM_ERASEBACKGROUND:                // Erase the background
-               return 1 ;
+               return (MRESULT) TRUE ;
 
           case WM_DESTROY:                        // Stop the timer
                WinStopTimer (hab, hwnd, ID_TIMER) ;
                return 0 ;
 	  default:
-	       return( (ULONG)WinDefWindowProc(hwnd, msg, mp1, mp2));
+	       return( (MRESULT)WinDefWindowProc(hwnd, msg, mp1, mp2));
           }
      }

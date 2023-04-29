@@ -1,9 +1,0 @@
-#--------------------
-# RANDRECT make file
-#--------------------
-
-randrect.obj : randrect.c
-     cl -c -G2sw -W3 /Od /Zi randrect.c
-
-randrect.exe : randrect.obj randrect.def
-     link /CO randrect, /align:16, NUL, os2, randrect
